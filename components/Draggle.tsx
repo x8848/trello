@@ -3,7 +3,7 @@
 import { DraggleProps } from '@/utils/types'
 import { FC } from 'react'
 
-const Draggle: FC<DraggleProps> = ({ id, children, className }) => {
+const Draggle: FC<DraggleProps> = ({ id, className, children }) => {
   const drag = (e: React.DragEvent<HTMLDivElement>) => {
     const id = (e.target as EventTarget & { id: string }).id
     e.dataTransfer.setData('id', id)

@@ -1,5 +1,9 @@
 import { ReactNode } from 'react'
 
+export interface PageProps {
+  params: { id: string }
+}
+
 export interface IdNameProps {
   id: string
   name: string
@@ -7,8 +11,8 @@ export interface IdNameProps {
 
 export interface DraggleProps {
   id: string
-  children: ReactNode
   className?: string
+  children: ReactNode
 }
 
 export interface DroppableProps extends DraggleProps {
