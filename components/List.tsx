@@ -1,22 +1,25 @@
-import { getCards } from '@/utils/actions'
+import { getCards, moveCard } from '@/utils/actions'
+import { IdNameProps } from '@/utils/types'
 import { FC } from 'react'
+import Draggle from './Draggle'
+import Droppable from './Droppable'
 import Input from './Input'
 
-const List: FC<{ id: string; name: string }> = async ({ id, name }) => {
+const List: FC<IdNameProps> = async ({ id, name }) => {
   const cards = await getCards(id)
 
   return (
-    <div className='border-2 border-black px-1 py-2 w-[200px] bg-white'>
+    <Droppable id={id} onDrop={moveCard} className='border-2 border-black px-1 pt-2 pb-20 w-[200px] bg-white'>
       <div className='font-bold'>{name}</div>
       <div className='flex flex-col gap-1'>
         {cards.map(({ id, name }) => (
-          <div className='border-2 border-black p-1' key={id}>
+          <Draggle id={id} key={id} className='border-2 border-black p-1'>
             {name}
-          </div>
+          </Draggle>
         ))}
         <Input listId={id} />
       </div>
-    </div>
+    </Droppable>
   )
 }
 
